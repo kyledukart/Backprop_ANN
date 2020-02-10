@@ -7,7 +7,7 @@ Assignment Details:
 Part 1: Simple Character Recognition
 As a warm-up, you are asked to solve the same kind of pattern recognition problem as in textbook exercise E7.11, which you previously worked on using Hebbian learning. This time you will be using a multilayer ANN, trained using the backpropagation algorithm as a pattern classifier, rather than an autoassociator. To review, the input patterns are:
 
-Input patterns for "0", "1", and "2".
+Input patterns for "0", "1", and "2" are in the file patterns.png
 
 To solve this problem, use a network with two layers of neurons, with every neuron's transfer function being a log sigmoid. As discussed in class, this is often referred to as a three-layer network, because many people count the inputs as a separate layer (since the number of inputs and outputs is fixed by the problem, but the number of neurons in the first layer isn't). The first layer of neurons is generally called a hidden layer, since it (and its weights) are not directly constrained by the problem.
 
