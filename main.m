@@ -2,26 +2,26 @@
 function output = main(X)
 
 % get input patterns
-P = inputPatterns();
+P = inputPatterns();  % input P is a 30 x 3 matrix
 
 %% set up two layers of neurons, first layer has X neurons, second layer has 3 neurons
-% perceptron layer 1
-% perceptron layer 2
+% initialize perceptron layer 1 with X neurons
+% initialize perceptron layer 2 with 3 neurons
 % set initial weights and biases
-B1 = 0;
-W1 = 0;
-B2 = 0;
-W2 = 0;
+B1 = zeros(X,1);  % B1 is biases for layer 1, with a size of X x 1
+W1 = zeros(X,30);  % W1 is weight matrix for layer 1, with a size of X x 30
+B2 = zeros(3,1);  % B2 is biases for layer 2, with a size of 3 x 1
+W2 = 0;  % W2 is a weight matrix for layer 2, with a size of 3 x X
 % set answers
-t = 0;
+t = [1,0,0;0,1,0;0,0,1];   % t is the given answers matrix, with a size of 3 x 3
 
 %% forward compute
-n1 = neuronLayer(P,W1,B1);
-n2 = neuronLayer(n1,W2,B2);
+a1 = neuronLayer(P,W1,B1);  % a1 is the results of layer 1, with a size of X x 1
+a2 = neuronLayer(n1,W2,B2);  % a2 is the results of computation, with a size of 3 x 1
 
 %% backpropagation
 % compute error
-e = t - n2;
+e = t - a2;
 % update W2 and B2
 % update W1 and B1
 
