@@ -1,4 +1,5 @@
 % function to implement a layer of neurons
-function output = neuronLayer(p, w, b)
+function [n,a] = neuronLayer(p, w, b)
 
-output = logsig(p * w' + b);
+n = p * w' + b;
+a = logsig(n);
