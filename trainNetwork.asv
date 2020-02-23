@@ -1,8 +1,6 @@
 % This function trains a two-layer network using backpropogation and
 % returns the resulting weight and bias for each layer, as well as the mean
-% square error after every epoch for every input (organized row=input,
-% col=epoch, value=mse)
-
+% square error after every epoch for every input (organized 
 % P (matrix) is training set of inputs
 % T (matrix) is training set of desired outputs
 % layers (vector) specifies amounts of neurons per layer
