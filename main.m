@@ -2,7 +2,8 @@
 function output = main(S1, S2, learningRate, epochs)
 
 %% Part 1
-part1([S1 S2], learningRate, epochs);
+%part1([S1 S2], learningRate, epochs);
 
 %% Part 2
 %part2(S1, S2, learningRate, epochs);
+testLayers(S2, learningRate, epochs);
