@@ -1,12 +1,11 @@
-function output = graphPart1(MSE)
+function [] = graphPart1(MSE1, MSE2, MSE3)
     % print results matrix as graph
-    x = 1:length(MSE);
-    %y = [0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0];
     figure
-    plot(x, MSE(1,:),'r',x,MSE(2,:),'g',x,MSE(3,:),'b')
+    x = 1:length(MSE1);
+    plot(x, MSE1(1,:),'r',x,MSE2(1,:),'g',x,MSE3(1,:),'b')
     %xticks(x)
     %yticks(y)
     xlabel('Number of Epochs')
     ylabel('Mean Squared Error')
-    legend('Classify 0', 'Classify 1', 'Classify 2')
+    legend('0 Errors', '4 Errors', '8 Errors')
     title('ANN Backprop Number Recognition')
