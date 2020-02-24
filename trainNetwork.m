@@ -19,7 +19,7 @@ function [W1, B1, W2, B2, MSE] = trainNetwork(P, T, neuronsPerLayer, learningRat
     B1 = randn(neuronsPerLayer(1), 1);
     W2 = randn(neuronsPerLayer(2), neuronsPerLayer(1));
     B2 = randn(neuronsPerLayer(2), 1);
-    MSE = zeros(inputs, epochs);
+    MSE = zeros(1,epochs);
     
     % Handle improper input
     if (epochs <= 0 || layers <= 0)
@@ -28,6 +28,7 @@ function [W1, B1, W2, B2, MSE] = trainNetwork(P, T, neuronsPerLayer, learningRat
     
     %% Perform backpropogation
     for epoch = 1:epochs
+       MSETemp = 0;
        for input = 1:inputs
            p = P(:, input);
            t = T(:, input);
@@ -47,6 +48,7 @@ function [W1, B1, W2, B2, MSE] = trainNetwork(P, T, neuronsPerLayer, learningRat
            B1 = B1 - learningRate * s1;
            
            % save error for graphing purposes
-           MSE(input, epoch) = meanSquaredError(t, a2);
+           MSETemp = MSETemp + meanSquaredError(t, a2);
        end
+       MSE(epoch) = MSETemp / inputs;
     end

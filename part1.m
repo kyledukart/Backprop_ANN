@@ -11,6 +11,9 @@ function MSEAverage = part1(neuronsPerLayer, learningRate, epochs)
     % Train network with regular patterns
     [W1, B1, W2, B2, MSETraining] = trainNetwork(P, T, neuronsPerLayer, learningRate, epochs);
     
+    % Graph the network learning speed 
+    graphPart2(MSETraining);
+    
     %% Test network with noisy patterns
     % Add noise to patterns and run against network 10 times
     P_0 = addNoise(P, 0); % 0 bits of noise
@@ -33,7 +36,7 @@ function MSEAverage = part1(neuronsPerLayer, learningRate, epochs)
     
     %% Graph mean squared errors from testing network with noisy patterns
     figure
-    x = (0:length(MSEAverage)-1) .* 4
+    x = (0:length(MSEAverage)-1) .* 4;
     plot(x, MSEAverage,'r')
     %xticks(x)
     %yticks(y)
