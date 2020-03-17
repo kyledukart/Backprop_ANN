@@ -1,4 +1,4 @@
-function [] = fashionMNIST(S1, S2, learningRate, epochs)
+function [] = testFashionEpochs(S1, S2, LR)
 
 %import the data
 [trainData, finaltestData] = loadFashionData();
@@ -20,10 +20,11 @@ testP = minMaxNormalization(testP);
 %testP = zscore(testP);
 
 %train network
-[W1, B1, W2, B2, MSETraining] = trainNetwork(P, T, [S1 S2], learningRate, epochs);  
-
-% Graph the network learning speed 
-graphFashionMSE(MSETraining);
-
-%test network
-MSE = testNetwork(testP, testT, W1, B1, W2, B2)
+for i = 1:20
+    epochs = i * 10;
+    [W1, B1, W2, B2, MSE] = trainNetwork(P, T, [S1 S2], LR, epochs);  
+    
+    % test the network with test data
+    MSETest(i) = testNetwork(testP, testT, W1, B1, W2, B2);
+end
+graphEpochs(MSETest, epochs);
