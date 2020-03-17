@@ -5,10 +5,11 @@
 
 % P (matrix) is training set of inputs
 % T (matrix) is training set of desired outputs
-% layers (vector) specifies amounts of neurons per layer
+% neuronsPerLayer (vector) specifies amounts of neurons per layer
 % learningRate (scalar) specifies rate of learning
+% momentum (scalar) value between 0 and 1 (higher = less impact per epoch)
 % epochs (scalar) specifies amount of epochs
-function [W1, B1, W2, B2, MSE] = trainNetwork(P, T, neuronsPerLayer, learningRate, epochs)
+function [W1, B1, W2, B2, MSE] = trainNetwork(P, T, neuronsPerLayer, learningRate, momentum, epochs)
     %% Initialize inputs/outputs
     layers = length(neuronsPerLayer);
     [inputLength, inputs] = size(P);
@@ -41,11 +42,8 @@ function [W1, B1, W2, B2, MSE] = trainNetwork(P, T, neuronsPerLayer, learningRat
            s2 = -2 * (t - a2) .* logsigdot(n2);
            s1 = logsigdot(n1) .* W2' * s2;
            
-           % Update weights and biases
-           W2 = W2 - learningRate * s2 * a1';
-           B2 = B2 - learningRate * s2;
-           W1 = W1 - learningRate * s1 * p';
-           B1 = B1 - learningRate * s1;
+           [W2, B2] = addMomentum(W2, -learningRate * s2 * a1', B2, -learningRate * s2, momentum);
+           [W1, B1] = addMomentum(W1, -learningRate * s1 * p', B1, -learningRate * s1, momentum);
            
            % save error for graphing purposes
            MSETemp = MSETemp + meanSquaredError(t, a2);
