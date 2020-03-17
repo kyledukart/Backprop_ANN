@@ -9,7 +9,7 @@
 % learningRate (scalar) specifies rate of learning
 % momentum (scalar) value between 0 and 1 (higher = less impact per epoch)
 % epochs (scalar) specifies amount of epochs
-function [W1, B1, W2, B2, MSE] = trainNetwork(P, T, neuronsPerLayer, learningRate, momentum, epochs)
+function [W1, B1, W2, B2, MSE] = trainNetworkM(P, T, neuronsPerLayer, learningRate, momentum, epochs)
     %% Initialize inputs/outputs
     layers = length(neuronsPerLayer);
     [inputLength, inputs] = size(P);
