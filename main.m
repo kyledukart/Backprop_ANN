@@ -6,4 +6,5 @@ function output = main(S1, S2, learningRate, epochs)
 
 %% Part 2
 %part2(S1, S2, learningRate, epochs);
-testLayers(S2, learningRate, epochs);
+%testLayers(S2, learningRate, epochs);
+testLearningRate(S1, S2, epochs);
