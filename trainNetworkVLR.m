@@ -77,7 +77,7 @@ function [W1, B1, W2, B2, MSE] = trainNetworkVLR(P, T, neuronsPerLayer, starting
        if (PercentChange > 0)
            % If MSE increases over threshhold, discard changes and decrease
            % LR
-           if (abs(PercentChange) > vlrThreshhold)
+           if (PercentChange > vlrThreshhold)
                % Discard change
                W2 = W2_original;
                B2 = B2_original;

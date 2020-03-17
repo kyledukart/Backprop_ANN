@@ -10,10 +10,14 @@ trainData = trainData(:,1:49999);
 %pull out P and T from the input data
 P = trainData(3:end,:);
 T = convertOutput(trainData(2,:));
+testP = testData(3:end,:);
+testT = convertOutput(testData(2,:));
 
 %normalize the data (Choose one method)
 P = minMaxNormalization(P);
+testP = minMaxNormalization(testP);
 %P = zscore(P);
+%testP = zscore(testP);
 
 %train network
 [W1, B1, W2, B2, MSETraining] = trainNetwork(P, T, [S1 S2], learningRate, epochs);  
@@ -22,10 +26,4 @@ P = minMaxNormalization(P);
 graphFashionMSE(MSETraining);
 
 %test network
-testP = testData(3:end,:);
-%normalization (Choose one method, same as above)
-testP = minMaxNormalization(testP);
-%testP = zscore(testP);
-
-testT = convertOutput(testData(2,:));
 MSE = testNetwork(testP, testT, W1, B1, W2, B2)
