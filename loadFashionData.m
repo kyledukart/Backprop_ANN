@@ -5,5 +5,3 @@ test = table2array(readtable("test.csv"));
 
 train = train';
 test = test';
-%save FashionTrainData.mat train;
-%save FashionTestData.mat test;
