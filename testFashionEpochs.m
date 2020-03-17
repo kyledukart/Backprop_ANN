@@ -17,4 +17,5 @@ for i = 1:20
     % test the network with test data
     MSETest(i) = testNetwork(testP, testT, W1, B1, W2, B2);
 end
+
 graphEpochs(MSETest, epochs);

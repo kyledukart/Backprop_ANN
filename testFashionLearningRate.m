@@ -1,4 +1,5 @@
 function [] = testFashionLearningRate(S1, S2, epochs)
+
 % Import the data
 [trainP, trainT, testP, testT] = loadFashionData();
 
