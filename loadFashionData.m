@@ -1,4 +1,4 @@
 function [train,test] = loadFashionData()
 
-train = readtable("train.csv");
-test = readtable("test.csv");
+train = table2array(readtable("train.csv"));
+test = table2array(readtable("test.csv"));
