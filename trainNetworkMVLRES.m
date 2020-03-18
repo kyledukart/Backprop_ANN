@@ -11,7 +11,7 @@
 % vlrIncrease (scalar) coefficient by which to increase lr
 % vlrDecrease (scalar) coefficient by which to decrease lr
 % epochs (scalar) specifies amount of epochs
-function [W1, B1, W2, B2, MSE, LR, VMSE, lastEpoch] = trainNetworkMVLRES(P, T, neuronsPerLayer, startingLR, vlrThreshold, vlrIncrease, vlrDecrease, momentum, validationSetSize, epochs)
+function [W1, B1, W2, B2, MSE, LR, VMSE] = trainNetworkMVLRES(P, T, neuronsPerLayer, startingLR, vlrThreshold, vlrIncrease, vlrDecrease, momentum, validationSetSize, epochs)
     %% Initialize inputs/outputs
     layers = length(neuronsPerLayer);
     validationP = P(:,1:validationSetSize);
@@ -72,8 +72,8 @@ function [W1, B1, W2, B2, MSE, LR, VMSE, lastEpoch] = trainNetworkMVLRES(P, T, n
            s1 = logsigdot(n1) .* W2' * s2;
 
            % Update weights and biases with momentum
-           [W2, B2] = addMomentum(W2, -LR(epoch) * s2 * a1', B2, -LR(epoch) * s2, momentum);
-           [W1, B1] = addMomentum(W1, -LR(epoch) * s1 * p', B1, -LR(epoch) * s1, momentum);
+           [W2, B2] = addMomentum(W2, W2 -LR(epoch) * s2 * a1', B2, B2 -LR(epoch) * s2, momentum);
+           [W1, B1] = addMomentum(W1, W1 -LR(epoch) * s1 * p', B1, B1 -LR(epoch) * s1, momentum);
 
            % save error for graphing purposes
            MSETemp = MSETemp + meanSquaredError(t, a2);
@@ -134,8 +134,6 @@ function [W1, B1, W2, B2, MSE, LR, VMSE, lastEpoch] = trainNetworkMVLRES(P, T, n
            end
        end
        
-       lastEpoch = epoch;
-       
        % If VMSE increased 3 times in a row, stop training and return
        % minimum weights and biases, as well as last epoch
        if (VMSEIncreaseCount >= 3)
@@ -143,6 +141,9 @@ function [W1, B1, W2, B2, MSE, LR, VMSE, lastEpoch] = trainNetworkMVLRES(P, T, n
           B1 = B1_min;
           W2 = W2_min;
           B2 = B2_min;
+          VMSE(epoch:end) = VMSEMin;
+          MSE(epoch:end) = MSE(epoch);
+          LR(epoch:end) = 0;
           return;
        end
     end

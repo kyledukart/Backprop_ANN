@@ -9,7 +9,7 @@ function [] = testMomentum(S1, S2, learningRate, epochs)
 % P = zscore(P);
 % testP = zscore(testP);
 
-momentum = [0.2, 0.5, 0.8, 0.9, 0.98];
+momentum = [0.3, 0.5, 0.7, 0.9];
 
 for counter = 1:length(momentum)
     % Train the network

@@ -58,8 +58,8 @@ function [W1, B1, W2, B2, MSE, LR] = trainNetworkMVLR(P, T, neuronsPerLayer, sta
            s1 = logsigdot(n1) .* W2' * s2;
 
            % Update weights and biases with momentum
-           [W2, B2] = addMomentum(W2, -LR(epoch) * s2 * a1', B2, -LR(epoch) * s2, momentum);
-           [W1, B1] = addMomentum(W1, -LR(epoch) * s1 * p', B1, -LR(epoch) * s1, momentum);
+           [W2, B2] = addMomentum(W2, W2 -LR(epoch) * s2 * a1', B2, B2 -LR(epoch) * s2, momentum);
+           [W1, B1] = addMomentum(W1, W1 -LR(epoch) * s1 * p', B1, B1 -LR(epoch) * s1, momentum);
 
            % save error for graphing purposes
            MSETemp = MSETemp + meanSquaredError(t, a2);
@@ -76,6 +76,8 @@ function [W1, B1, W2, B2, MSE, LR] = trainNetworkMVLR(P, T, neuronsPerLayer, sta
            if (epoch > 1)
                PercentChange = (MSE(epoch) - MSE(epoch - 1)) / abs(MSE(epoch - 1)) * 100;
            end
+           
+           PercentChange
 
            % If MSE increases, keep changes and don't change LR
            if (PercentChange > 0)

@@ -42,9 +42,9 @@ function [W1, B1, W2, B2, MSE] = trainNetworkM(P, T, neuronsPerLayer, learningRa
            s2 = -2 * (t - a2) .* logsigdot(n2);
            s1 = logsigdot(n1) .* W2' * s2;
            
-           % Update weights and biases with momentum
-           [W2, B2] = addMomentum(W2, -learningRate * s2 * a1', B2, -learningRate * s2, momentum);
-           [W1, B1] = addMomentum(W1, -learningRate * s1 * p', B1, -learningRate * s1, momentum);
+%!         % Update weights and biases with momentum
+           [W2, B2] = addMomentum(W2, W2 -learningRate * s2 * a1', B2, B2 -learningRate * s2, momentum);
+           [W1, B1] = addMomentum(W1, W1 -learningRate * s1 * p', B1, B1 -learningRate * s1, momentum);
            
            % save error for graphing purposes
            MSETemp = MSETemp + meanSquaredError(t, a2);
