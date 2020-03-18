@@ -8,7 +8,7 @@ function [] = graphMVLR(MSE, epochs, MSETest, LR)
     xlabel('Number of Epochs')
     ylabel('Mean Squared Error')
     legend('1','2','3','4','5')
-    title('Mean Squared Error of Variable Learning Rate Threshold')
+    title('Mean Squared Error of Variable Learning Rate Percentage Threshold')
     
     figure
     x = [1,2,3,4,5];
@@ -16,9 +16,9 @@ function [] = graphMVLR(MSE, epochs, MSETest, LR)
     xticks([1,2,3,4,5])
     xticklabels({'1','2','3','4','5'})
     %yticks(y)
-    xlabel('Variable Learning Rate Threshold')
+    xlabel('Variable Learning Rate Percentage Threshold')
     ylabel('Mean Squared Error')
-    title('Accuracy of Different Learning Rates')
+    title('Error Rate of Different Variable Learning Rate Percentage Thresholds')
     
     figure
     x = 1:epochs;
@@ -28,4 +28,4 @@ function [] = graphMVLR(MSE, epochs, MSETest, LR)
     xlabel('Number of Epochs')
     ylabel('Learning Rate')
     legend('1','2','3','4','5')
-    title('Learning Rate Resulting from Variable Learning Rate Threshold')
+    title('Learning Rate Resulting from Variable Learning Rate Percentage Threshold')
