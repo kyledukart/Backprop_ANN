@@ -4,8 +4,8 @@ function [] = testMomentum(S1, S2, learningRate, epochs)
 [trainP, trainT, testP, testT] = loadFashionData();
 
 % Normalize the data (Choose one method)
- trainP = minMaxNormalization(trainP);
- testP = minMaxNormalization(testP);
+% trainP = minMaxNormalization(P);
+% testP = minMaxNormalization(testP);
 % P = zscore(P);
 % testP = zscore(testP);
 

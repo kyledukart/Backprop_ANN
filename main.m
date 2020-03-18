@@ -12,4 +12,5 @@ function output = main(S1, S2, learningRate, epochs)
 %% Fashion MNIST
 %fashionMNIST(S1, S2, learningRate, epochs);
 %testFashionLearningRate(S1, S2, epochs);
-testFashionEpochs(S1,S2,learningRate);
+%testFashionEpochs(S1,S2,learningRate);
+testFashionNeurons(S2,learningRate,epochs);
